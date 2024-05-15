@@ -9,5 +9,16 @@
 </head>
 
 <body <?php body_class(); ?>>
-    
-    <?php wp_body_open(); ?>
+  <header class="header">
+    <a href="<?php echo home_url( '/' ); ?>">
+      <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" alt="Logo">
+    </a>
+    <div class="main_nav">
+            <nav>
+                <?php wp_nav_menu(array(
+                    'theme_location' => 'main',
+                    'container' => 'ul', // afin d'éviter d'avoir une div autour
+                )); ?>
+            </nav>
+        </div>
+  </header>
