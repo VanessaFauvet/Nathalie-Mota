@@ -9,11 +9,11 @@
 </head>
 
 <body <?php body_class(); ?>>
-  <header class="header">
-    <a href="<?php echo home_url( '/' ); ?>">
-      <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" alt="Logo">
-    </a>
-    <div class="main_nav">
+    <header class="header">
+        <a href="<?php echo home_url( '/' ); ?>">
+            <img class="logo" src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" alt="Logo">
+        </a>
+        <div class="main_nav">
             <nav>
                 <?php wp_nav_menu(array(
                     'theme_location' => 'main',
@@ -21,4 +21,4 @@
                 )); ?>
             </nav>
         </div>
-  </header>
+    </header>

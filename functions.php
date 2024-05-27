@@ -1,7 +1,10 @@
 <?php 
 
 function nathalie_mota_scripts() {
+	// Chargement du thème
     wp_enqueue_style('nathalie-mota-style', get_template_directory_uri() . '/assets/css/theme.css', array(), 1.0);
+	// Chargement du script JS
+    wp_enqueue_script('nathalie-mota-style', get_stylesheet_directory_uri() . '/js/scripts.js', array('jquery'), '1.0', time(), true);
 }
 
 add_action('wp_enqueue_scripts', 'nathalie_mota_scripts');
