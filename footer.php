@@ -14,7 +14,7 @@
 	</footer>
 
 	<!-- Lance la popup contact -->
-	<?php get_template_part('/template-parts/modale'); ?>
+	<!-- <?php get_template_part('/template-parts/modale'); ?> -->
 
     <?php wp_footer(); ?>
     </body>
