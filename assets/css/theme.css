@@ -56,7 +56,7 @@ header {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.2);
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     z-index: 999;
@@ -64,10 +64,13 @@ header {
     left: 0;
 }
 
+.popup-overlay.visible {
+    display: flex;
+}
+
 .popup-contact {
     background: white;
     max-width: 286px;
-    height: 583px;
     position: relative;
     border: 5px solid #000;
     padding: 18px 0 24px;
@@ -87,6 +90,7 @@ header {
 .popup-details {
     width: 190px;
     margin: 0 auto;
+    object-fit: contain;
 }
 
 .wpcf7-text, .wpcf7-textarea {
@@ -150,7 +154,6 @@ form label {
 
     .popup-contact {
         max-width: 597px;
-        height: 769px;
         padding: 18px 0 36px;
     }
 
