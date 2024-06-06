@@ -26,23 +26,23 @@ body {
     background: #fff;
 }
 
-header, .menu {
+#main-menu ul, #footer-menu ul, .copyright {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    text-align: center;
 }
 
-.menu a {
-    text-decoration: none;
+#main-menu a, #footer-menu a, .copyright {
     font-family: 'Space Mono', sans-serif;
     font-size: 1em;
     text-transform: uppercase;
-    color: black;
+    color: inherit;
 }
 
 /***** Header *****/
-header {
+#main-menu {
+    box-shadow: 0px 4px 14px 10px rgba(0, 0, 0, 0.03);
     align-items: center;
 }
 
@@ -129,18 +129,19 @@ form label {
 
 /********** Media queries **********/
 @media screen and (min-width: 768px) {
-    body {
-        margin: 0 10% 0 10%;
-    }
-
-    header, .menu {
-        display: flex;
+    /***** Général *****/
+    #main-menu ul, #footer-menu ul, .copyright {
         flex-direction: row;
+        gap: 45px;
+        align-items: center;
     }
 
-    header {
-        width: 100%;
+    /***** Header *****/
+    #main-menu {
         height: 80px;
+        padding: 0 146px 0 146px;
+        display: flex;
+        align-items: center;
         justify-content: space-between;
     }
 
@@ -148,10 +149,7 @@ form label {
         width: 216px;
     }
 
-    .menu {
-        gap: 45px;
-    }
-
+    /***** Modale *****/
     .popup-contact {
         max-width: 597px;
         padding: 18px 0 36px;
@@ -174,10 +172,21 @@ form label {
     .wpcf7-text {
         margin-bottom: 24px;
     }
+
+    /***** Footer *****/
+    footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        border-top: 1px solid black;
+        height: 40px;
+    }
+
+    #menu-item-113 {
+        padding-right: 45px;
+    }
 }
 
 @media screen and (min-width: 430px) {
-    .logo {
-        width: 205px;
-    }
+    
 }

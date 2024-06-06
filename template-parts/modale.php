@@ -8,5 +8,6 @@
             // On insère le formulaire de contact
             echo do_shortcode('[contact-form-7 id="d4e6d95" title="Modale contact"]');
             ?>
+            </div>
 	</div>
 </div>

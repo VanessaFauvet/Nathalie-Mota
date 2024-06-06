@@ -1,11 +1,30 @@
 <?php get_header(); ?>
 
-	<?php if( have_posts() ) : while( have_posts() ) : the_post(); ?>
-    
-    	<h1><?php the_title(); ?></h1>
-    
-    	<?php the_content(); ?>
+<?php
+$photo = get_the_post_thumbnail(null, 'full');
+$title = get_the_title();
+$reference = get_field('reference');
+$type = get_field('type');
+?>
 
-	<?php endwhile; endif; ?>
+<section class="photo-contenu">
+	<div class="bloc-infos">
+		<h2><?php echo esc_html($title) ?></h2>
+		<?php echo $photo; ?>
+		<?php echo $reference; ?>
+		<?php echo $type; ?>
+		<?php echo get_the_date(); ?>
+	</div>
+
+	<div class="bloc-photo">
+
+	</div>
+
+	<div class="bloc-interaction">
+		<button id="contact-ref" data-ref="<?php echo $reference; ?>">
+			Contactez-moi
+		</button>
+	</div>
+</section>
 
 <?php get_footer(); ?>
