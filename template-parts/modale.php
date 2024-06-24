@@ -1,7 +1,7 @@
 <div id="modale" class="popup-overlay">
 	<div class="popup-contact">
 		<div class="popup-header">
-                  <img class="popup-img" src="<?php echo get_theme_file_uri("/assets/images/contact_header.png") . ''; ?>">
+                  <img class="popup-img" src="<?php echo get_theme_file_uri("/assets/img/contact_header.png") . ''; ?>">
 		</div>
 		<div class="popup-details">
             <?php

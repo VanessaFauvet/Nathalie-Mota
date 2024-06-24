@@ -11,7 +11,7 @@
 <body <?php body_class(); ?>>
     <header id="main-menu">
         <a href="<?php echo home_url( '/' ); ?>">
-            <img class="logo" src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" alt="Logo">
+            <img class="logo" src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.png" alt="Logo">
         </a>
             <?php wp_nav_menu(array(
                 'theme_location' => 'main',
