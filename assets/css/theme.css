@@ -152,7 +152,7 @@ form label {
     justify-content: center;
     align-items: center;
     position: relative;
-    height: 900px;
+    height: 253px;
 }
 
 .hero img {
@@ -230,10 +230,9 @@ form label {
     }
 
     /***** Page d'article *****/
-    .page-photo {
+    .page-photo, .suggestions {
         max-width: 85vw;
         margin: 0 auto;
-        /* margin: 38px 146px 56px 146px; */
     }
 
     .photo-container {
@@ -280,6 +279,11 @@ form label {
 
     .txt-infos {
         margin-bottom: 20px;
+    }
+
+    /***** Page d'accueil *****/
+    .hero {
+        height: 962px;
     }
 
     /***** Footer *****/

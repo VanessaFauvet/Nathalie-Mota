@@ -1,11 +1,17 @@
 <?php get_header(); ?>
 
 <?php
+// Récupère l'image de la photo
 $photo = get_the_post_thumbnail(null, 'full');
+// Récupère le titre de la photo
 $title = get_the_title();
+// Récupère la référence de la photo
 $reference = get_field('reference');
+// Récupère le champs personnalisé "type"
 $type = get_field('type');
+// Récupère la taxonomie "Catégorie"
 $categories = get_the_terms( $post->ID, 'categorie' );
+// Récupère la taxonomie "Format"
 $formats = get_the_terms( $post->ID, 'format' );
 
 if(get_previous_post()!==null && get_previous_post()!=='') {
@@ -87,16 +93,8 @@ $next_link = get_permalink($next_post);
         <div class="preview">
             <div class="miniature" id="miniature"></div>
             <div class="arrows">
-                <?php if (!empty($previous_post)) : ?>
-                    <img class="arrow arrow_left" src="<?php echo get_theme_file_uri() . '/assets/img/left_arrow.png'; ?>" 
-                    alt="Photo précédente" data-thumbnail-url="<?php echo $previous_img; ?>" 
-                    data-target-url="<?php echo esc_url(get_permalink($previous_post->ID)); ?>">
-                <?php endif; ?>
-                <?php if (!empty($next_post)) : ?>
-                    <img class="arrow arrow_right" src="<?php echo get_theme_file_uri() . '/assets/img/right_arrow.png'; ?>" 
-                    alt="Photo suivante" data-thumbnail-url="<?php echo $next_img; ?>" 
-                    data-target-url="<?php echo esc_url(get_permalink($next_post->ID)); ?>">
-                <?php endif; ?>
+                <img src="<?php echo get_theme_file_uri() . '/assets/img/left_arrow.png'; ?>" alt="" class="arrow arrow_left">
+                <img src="<?php echo get_theme_file_uri() . '/assets/img/right_arrow.png'; ?>" alt="" class="arrow arrow_right">
             </div>
         </div>
     </div>
@@ -105,7 +103,7 @@ $next_link = get_permalink($next_post);
 <section class="suggestions">
     <h3 class="title-suggestions">Vous aimerez aussi</h3>
     <div class="suggestions-pics">
-        
+                    
     </div>
 </section>
 
