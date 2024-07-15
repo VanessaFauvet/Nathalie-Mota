@@ -15,11 +15,11 @@ $categories = get_the_terms( $post->ID, 'categorie' );
 $categorie_name = $categories[0]->name;
 ?>
 
-<div class="bloc_photo">
+<div class="photo_block">
     <!-- Affiche l'image avec son URL et un texte alternatif -->
     <img src="<?php echo $photo; ?>" alt="<?php the_title_attribute(); ?>">
     
-    <div class="similar_overlay">
+    <div class="photo_overlay">
         <!-- Affiche le titre de la photo -->
         <h2><?php echo esc_html($title); ?></h2>
         <!-- Affiche la catégorie -->
