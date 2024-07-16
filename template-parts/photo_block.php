@@ -17,7 +17,7 @@ $categorie_name = $categories[0]->name;
 
 <div class="photo_block">
     <!-- Affiche l'image avec son URL et un texte alternatif -->
-    <img src="<?php echo $photo; ?>" alt="<?php the_title_attribute(); ?>">
+    <img src="<?php echo $photo; ?>">
     
     <div class="photo_overlay">
         <!-- Affiche le titre de la photo -->

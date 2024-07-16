@@ -28,6 +28,10 @@ body {
     background: #fff;
 }
 
+h1 {
+    display: none;
+}
+
 /* p:not(.copyright){
     font-family: 'Poppins';
 } */
@@ -214,27 +218,13 @@ form label {
 }
 
 .suggestions {
+    display: flex;
+    flex-direction: column;
     padding: 24px 0;
 }
 
-.suggestions-pics {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 /***** Photo_block *****/
-.photo_block {
-    width: 318px;
-    height: 279px;
-}
 
-.photo_block img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
 
 /***** Hero *****/
 .hero {
