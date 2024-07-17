@@ -17,7 +17,7 @@ $categorie_name = $categories[0]->name;
 
 <div class="photo_block">
     <!-- Affiche l'image avec son URL et un texte alternatif -->
-    <img src="<?php echo $photo; ?>">
+    <img src="<?php echo $photo; ?>
     
     <div class="photo_overlay">
         <!-- Affiche le titre de la photo -->
@@ -32,7 +32,7 @@ $categorie_name = $categories[0]->name;
         </div>
         <!-- Affichage icône fullscreen -->
         <div class="fullscreen" data-full="<?php echo esc_attr($photo); ?>" data-category="<?php echo esc_attr($categorie_name); ?>" data-reference="<?php echo esc_attr($reference); ?>">
-            <img src="<?php echo get_theme_file_uri() . '/assets/img/Icon_fullscreen.png'; ?> alt="Icone fullscreen">
+            <img src="<?php echo get_theme_file_uri() . '/assets/img/Icon_fullscreen.png'; ?>" alt="Icone fullscreen">
         </div>
     </div>
 </div>

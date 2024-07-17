@@ -1,9 +1,10 @@
 <?php
     // Tableau associatif pour demander une photo aléatoire
     $photoArgs = array(
-        'post_type' => 'photo',
+        'post_type'      => 'photo',
         'posts_per_page' => 8,
-        'orderby' => 'rand',
+        'orderby'        => 'date',
+        'order'          => 'ASC',
     );
 
     // Exécute la requête WP_Query pour récupérer les infos auprès de WordPress
@@ -19,3 +20,8 @@
     wp_reset_postdata();
 }
 ?>
+
+<!-- Bloc pour le chargement de plus de photos -->
+<div id="load-moreContainer">
+    <button id="btnLoad-more" data-page="1" data-url="">Charger plus</button>
+</div>

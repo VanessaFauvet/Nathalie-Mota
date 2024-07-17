@@ -105,7 +105,9 @@ $next_link = get_permalink($next_post);
 </section>
 
 <section class="suggestions">
-    <h3 class="title-suggestions">Vous aimerez aussi</h3>
+    <div class="title-suggestion">
+        <h3>Vous aimerez aussi</h3>
+    </div>
     <div class="suggestions-pics">
     <?php
         $categorie = get_the_terms(get_the_ID(), 'categories');
