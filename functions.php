@@ -103,7 +103,35 @@ function nathalie_mota_taxonomies() {
     );
 
     register_taxonomy('format', array( 'photo' ), $args);
+
+    $labels = array(
+        'name'             => __( 'Année' ),
+        'singular_name'    => __( 'Année' ),
+        'search_items'     => __( 'Rechercher une année' ),
+        'all_items'        => __( 'Toutes les années' ),
+        'parent_item'      => __( 'Parent Année' ),
+        'parent_item_colon' => __( 'Parent Année:' ),
+        'edit_item'        => __( 'Modifier année' ),
+        'add_new_item'     => __( 'Ajouter une nouvelle année' ),
+        'new_item_name'    => __( 'Nouvelle année' ),
+        'menu_name'        => __( 'Année' )
+       );
+   
+       $args = array(
+       'hierarchical'      => true,
+       'labels'            => $labels,
+       'show_ui'           => true,
+       'show_admin_column' => true,
+       'query_var'         => true,
+       'show_in_rest'      => true,
+       'rewrite'           => array( 'slug' => 'annee' )
+       );
+   
+       register_taxonomy('annee', array( 'photo' ), $args);
 }
+
+// Gestion de la requête Ajax
+
 
 add_action('init', 'nathalie_mota_custom_post_types');
 add_action('init', 'nathalie_mota_taxonomies');

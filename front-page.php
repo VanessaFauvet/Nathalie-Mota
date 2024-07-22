@@ -10,6 +10,10 @@
 
 <?php get_template_part('/template-parts/hero'); ?>
 
+<section class="filtres_container">
+    <?php get_template_part('template-parts/filtres'); ?>
+</section>
+
 <section class="catalogue_container">
     <?php get_template_part('/template-parts/catalogue'); ?>
 </section>

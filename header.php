@@ -18,4 +18,12 @@
                 'container' => 'ul', // afin d'éviter d'avoir une div autour
                 )); 
             ?>
+        
+        <!-- Menu mobile -->
+        <!-- <div class="hamburger-icon">
+            <img class="logo" src="<?php echo get_template_directory_uri(); ?>/assets/img/Burger_open.png" alt="Icone burger">
+        </div>
+        <div class="cross-icon">
+            <img class="logo" src="<?php echo get_template_directory_uri(); ?>/assets/img/Burger_close.png" alt="Icone croix">
+        </div> -->
     </header>

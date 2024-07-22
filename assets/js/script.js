@@ -1,7 +1,7 @@
 // Apparition et disparition de la modale de contact
 addEventListener("DOMContentLoaded", (event) => {
     const contactBtn = document.getElementById('menu-item-116');
-    const refBtn = document.getElementById('contact-ref');
+    const refBtn = document.getElementById('ref-btn');
 
     if (refBtn !== null) {
         const refValue = refBtn.dataset.ref
@@ -57,4 +57,11 @@ jQuery(document).ready(function ($) {
       window.location.href = targetUrl;
     });
   });
-  
+
+// Filtres
+
+
+// Pagination infinie en Ajax
+
+
+// Lightbox

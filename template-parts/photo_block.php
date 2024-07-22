@@ -1,5 +1,3 @@
-<?php get_header(); ?>
-
 <?php
 // Récupère l'image de la photo
 $photo = get_the_post_thumbnail(null, 'full');
@@ -36,5 +34,3 @@ $categorie_name = $categories[0]->name;
         </div>
     </div>
 </div>
-
-<?php get_footer(); ?>
