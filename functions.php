@@ -3,8 +3,11 @@
 function nathalie_mota_scripts() {
     // Chargement du thème
     wp_enqueue_style('nathalie-mota-style', get_template_directory_uri() . '/assets/css/theme.css', array(), 1.0);
-    // Chargement du script JS
-    wp_enqueue_script('nathalie-mota-style', get_stylesheet_directory_uri() . '/assets/js/script.js', array('jquery'), '1.0', time(), true);
+    // Chargement du script de la modale
+    wp_enqueue_script('modale', get_stylesheet_directory_uri() . '/assets/js/modale.js', array('jquery'), '1.0', time(), true);
+    // Chargement du script des miniatures
+    wp_enqueue_script('miniatures', get_stylesheet_directory_uri() . '/assets/js/miniatures.js', array('jquery'), '1.0', time(), true);
+    // Chargement du script du bouton Charger Plus
 }
 
 add_action('wp_enqueue_scripts', 'nathalie_mota_scripts');
@@ -130,8 +133,86 @@ function nathalie_mota_taxonomies() {
        register_taxonomy('annee', array( 'photo' ), $args);
 }
 
-// Gestion de la requête Ajax
-
-
 add_action('init', 'nathalie_mota_custom_post_types');
 add_action('init', 'nathalie_mota_taxonomies');
+
+
+// Gestion de la requête Ajax "Charger plus"
+// Register the AJAX action for logged-in users
+add_action('wp_ajax_load_more_photos', 'load_more_photos');
+
+// Register the AJAX action for non-logged-in users
+add_action('wp_ajax_nopriv_load_more_photos', 'load_more_photos');
+
+function load_more_photos() {
+    echo (load_more_photos_process());
+    exit;
+}
+
+function load_more_photos_process() {
+    if(isset($_POST['photoArray'])) {
+        $photoArray = $_POST['photoArray'];
+    } else {
+        $photoArray = false;
+    }
+
+    
+    // $photoArray = [85];
+
+    $photoArgs = array(
+        'post_type'      => 'photo',
+        'posts_per_page' => 8,
+        'orderby'        => 'date',
+        'order'          => 'ASC',
+        'post_status'    => 'publish',
+        'post__not_in' => $photoArray
+    );
+    
+    $photo_block = new WP_Query($photoArgs);
+
+    // Vérification s'il y a des photos
+    if ($photo_block->have_posts()) :
+
+        $photo_contents = "";
+    
+        // Définir les arguments pour le bloc photo
+        set_query_var('photo_block_args', array('context' => 'front-page'));
+    
+        // Boucle pour afficher chaque photo
+        while ($photo_block->have_posts()) :
+            $photo_block->the_post();
+            include(get_template_directory() . '/template-parts/load.php');
+            
+
+            $photo_contents.=$photo_content;
+        endwhile;
+    
+        // Réinitialisation de la requête
+        wp_reset_postdata();
+
+
+        return($photo_contents);
+
+    else :
+        return 'Aucune photo trouvée.';
+    endif;
+}
+
+// Enqueue the script
+add_action('wp_enqueue_scripts', 'enqueue_my_ajax_script');
+
+function enqueue_my_ajax_script() {
+    wp_enqueue_script('load-more', get_stylesheet_directory_uri() . '/assets/js/load-more.js', array('jquery'), '1.0', true);
+
+    // Localize the script with new data
+    wp_localize_script('load-more', 'MyAjax', array(
+        'ajaxurl' => admin_url('admin-ajax.php')
+    ));
+}
+
+// Add shortcode to display the button and date
+add_shortcode('my_ajax_button', 'display_my_ajax_button');
+
+function display_my_ajax_button() {
+    return load_more_photos_process() . '<button id="getDateButton">Get Current Date and Time</button><div id="dateDisplay"></div>' ;
+}

@@ -15,7 +15,7 @@
 </section>
 
 <section class="catalogue_container">
-    <?php get_template_part('/template-parts/catalogue'); ?>
+<?php echo do_shortcode('[my_ajax_button]'); ?>
 </section>
 
 <?php get_footer(); ?>
