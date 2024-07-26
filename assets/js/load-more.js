@@ -1,8 +1,39 @@
 jQuery(document).ready(function($) {
-    let page = 0;
+    //   $('#getDateButton').on('click', function() {
+    //     ajax_photos;
 
+    //   })
+});
+
+jQuery(document).ready(function($) {
     $('#getDateButton').on('click', function() {
-        const elements = document.querySelectorAll('[data-photo-id]');
+        ajax_photos();
+
+      });
+
+      $('#categorie').on('change', function() {
+        ajax_photos(true);
+
+      });
+
+      $('#format').on('change', function() {
+        ajax_photos(true);
+
+      });
+
+      $('#annee').on('change', function() {
+        ajax_photos(true);
+
+      });
+
+
+function ajax_photos(source = null) {
+const elements = document.querySelectorAll('[data-photo-id]');
+        const category = document.getElementById('categorie').value;
+        console.log(category);
+        const format = document.getElementById('format').value;
+        const year = document.getElementById('annee').value;
+
 
     // Créer un tableau pour stocker les valeurs des attributs data-photo-id
     const photoIds = [];
@@ -19,14 +50,23 @@ jQuery(document).ready(function($) {
             type: 'POST',
             data: {
                 action: 'load_more_photos',
-                photoArray: photoIds
+                photoArray: photoIds,
+                category: category,
+                year: year,
+                format: format
             },
             success: function(response) {
-                $('#dateDisplay').append(response);
+                if(source == null) {
+                    $('#dateDisplay').append(response);
+                } else {
+                    $('#dateDisplay').html(response);
+                    console.log('Filtre')
+                }
+                
             },
             error: function(error) {
                 console.log('Error:', error);
             }
         });
-    });
+}
 });
