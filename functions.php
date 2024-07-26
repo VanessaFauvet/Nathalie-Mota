@@ -2,12 +2,13 @@
 
 function nathalie_mota_scripts() {
     // Chargement du thème
-    wp_enqueue_style('nathalie-mota-style', get_template_directory_uri() . '/assets/css/theme.css', array(), 1.0);
+    wp_enqueue_style('nathalie-mota-style', get_template_directory_uri() . '/assets/css/theme.css', array(), 1.1);
     // Chargement du script de la modale
     wp_enqueue_script('modale', get_stylesheet_directory_uri() . '/assets/js/modale.js', array('jquery'), '1.0', time(), true);
     // Chargement du script des miniatures
     wp_enqueue_script('miniatures', get_stylesheet_directory_uri() . '/assets/js/miniatures.js', array('jquery'), '1.0', time(), true);
-    // Chargement du script du bouton Charger Plus
+    // Chargement du script de la lightbox
+    wp_enqueue_script('lightbox', get_stylesheet_directory_uri() . '/assets/js/lightbox.js', array('jquery'), '1.0', time(), true);
 }
 
 add_action('wp_enqueue_scripts', 'nathalie_mota_scripts');
@@ -106,31 +107,6 @@ function nathalie_mota_taxonomies() {
     );
 
     register_taxonomy('format', array( 'photo' ), $args);
-
-    $labels = array(
-        'name'             => __( 'Année' ),
-        'singular_name'    => __( 'Année' ),
-        'search_items'     => __( 'Rechercher une année' ),
-        'all_items'        => __( 'Toutes les années' ),
-        'parent_item'      => __( 'Parent Année' ),
-        'parent_item_colon' => __( 'Parent Année:' ),
-        'edit_item'        => __( 'Modifier année' ),
-        'add_new_item'     => __( 'Ajouter une nouvelle année' ),
-        'new_item_name'    => __( 'Nouvelle année' ),
-        'menu_name'        => __( 'Année' )
-       );
-   
-       $args = array(
-       'hierarchical'      => true,
-       'labels'            => $labels,
-       'show_ui'           => true,
-       'show_admin_column' => true,
-       'query_var'         => true,
-       'show_in_rest'      => true,
-       'rewrite'           => array( 'slug' => 'annee' )
-       );
-   
-       register_taxonomy('annee', array( 'photo' ), $args);
 }
 
 add_action('init', 'nathalie_mota_custom_post_types');
@@ -140,9 +116,11 @@ add_action('init', 'nathalie_mota_taxonomies');
 // Gestion de la requête Ajax "Charger plus"
 // Register the AJAX action for logged-in users
 add_action('wp_ajax_load_more_photos', 'load_more_photos');
+add_action('wp_ajax_load_more_photos_process', 'load_more_photos_process');
 
 // Register the AJAX action for non-logged-in users
 add_action('wp_ajax_nopriv_load_more_photos', 'load_more_photos');
+add_action('wp_ajax_nopriv_load_more_photos_process', 'load_more_photos_process');
 
 function load_more_photos() {
     echo (load_more_photos_process());
@@ -153,20 +131,78 @@ function load_more_photos_process() {
     if(isset($_POST['photoArray'])) {
         $photoArray = $_POST['photoArray'];
     } else {
-        $photoArray = false;
+        $photoArray = null;
+    }
+
+    if(isset($_POST['source'])&& $_POST['source'] != "") {
+        $source = $_POST['source'];
+    } else {
+        $source = null;
+    }
+
+        $tax_filter = array(
+            'relation' => 'AND'
+        );
+
+if(isset($_POST['category']) && $_POST['category'] != "")  {
+    $category = $_POST['category'];
+    array_push($tax_filter, [
+        'taxonomy' => 'categorie',
+        'field' => 'slug',
+        'terms' => $category,
+    ]);
+    } else {
+    $category = null;
+    }
+
+    if(isset($_POST['format']) && $_POST['format'] != "") {
+        $format = $_POST['format'];
+        array_push($tax_filter, [
+            'taxonomy' => 'format',
+            'field' => 'slug',
+            'terms' => $format,
+        ]);
+    } else {
+        $format = null;
+    }
+
+    if(isset($_POST['year']) && $_POST['year'] != "") {
+        $year = $_POST['year'];
+    } else {
+        $year = null;
     }
 
     
-    // $photoArray = [85];
-
+    $tax_query = is_null($category) && is_null($format) && is_null($year) ? '' :  [
+        'tax_query' => 
+            $tax_filter
+        ];
+    
     $photoArgs = array(
         'post_type'      => 'photo',
         'posts_per_page' => 8,
         'orderby'        => 'date',
         'order'          => 'ASC',
         'post_status'    => 'publish',
-        'post__not_in' => $photoArray
     );
+
+    if(!(is_null($category) && is_null($format))) {
+        $photoArgs['tax_query']= $tax_filter;
+    }
+
+    if(!(is_null($year))) {
+        $photoArgs['order_by']= 'date';
+        $photoArgs['order']= $year;
+    }
+
+    if($source==null) {
+        $photoArgs['post__not_in']= $photoArray;
+    } else if (!(is_null($year))){
+        $photoArgs['posts_per_page']= -1;
+        $photoArgs['post__in']= $photoArray;
+    }
+
+    error_log(print_r($photoArgs, true));
     
     $photo_block = new WP_Query($photoArgs);
 
@@ -176,7 +212,7 @@ function load_more_photos_process() {
         $photo_contents = "";
     
         // Définir les arguments pour le bloc photo
-        set_query_var('photo_block_args', array('context' => 'front-page'));
+        // set_query_var('photo_block_args', array('context' => 'front-page'));
     
         // Boucle pour afficher chaque photo
         while ($photo_block->have_posts()) :
@@ -214,5 +250,5 @@ function enqueue_my_ajax_script() {
 add_shortcode('my_ajax_button', 'display_my_ajax_button');
 
 function display_my_ajax_button() {
-    return load_more_photos_process() . '<button id="getDateButton">Get Current Date and Time</button><div id="dateDisplay"></div>' ;
+    return  '<div id="load-moreContainer">'. load_more_photos_process() . '</div><button id="btnLoad-more">Charger Plus</button>';
 }

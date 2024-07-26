@@ -1,12 +1,5 @@
 jQuery(document).ready(function($) {
-    //   $('#getDateButton').on('click', function() {
-    //     ajax_photos;
-
-    //   })
-});
-
-jQuery(document).ready(function($) {
-    $('#getDateButton').on('click', function() {
+    $('#btnLoad-more').on('click', function() {
         ajax_photos();
 
       });
@@ -53,15 +46,21 @@ const elements = document.querySelectorAll('[data-photo-id]');
                 photoArray: photoIds,
                 category: category,
                 year: year,
-                format: format
+                format: format,
+                source: source
             },
             success: function(response) {
                 if(source == null) {
-                    $('#dateDisplay').append(response);
+                    if ((response=='Aucune photo trouvée.')&& ($('#load-moreContainer').html().includes('Aucune photo trouvée.'))) {
+                        return;
+                    }
+                    $('#load-moreContainer').append(response);
                 } else {
-                    $('#dateDisplay').html(response);
+                    $('#load-moreContainer').html(response);
                     console.log('Filtre')
                 }
+
+                attachEventsToImages();
                 
             },
             error: function(error) {

@@ -11,12 +11,12 @@ $photo_block = new WP_Query($args);
 if ($photo_block->have_posts()) :
 
     // Définir les arguments pour le bloc photo
-    set_query_var('photo_block_args', array('context' => 'front-page'));
+    // set_query_var('photo_block_args', array('context' => 'front-page'));
 
     // Boucle pour afficher chaque photo
     while ($photo_block->have_posts()) :
         $photo_block->the_post();
-        get_template_part('template-parts/photo_block', get_post_format());
+        get_template_part('template-parts/load');
     endwhile;
 
     // Réinitialisation de la requête

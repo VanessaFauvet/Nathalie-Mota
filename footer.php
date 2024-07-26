@@ -3,7 +3,7 @@
             'theme_location' => 'footer',
             // 'container' => 'ul', // afin d'éviter d'avoir une div autour
         ));
-        echo '<span>Tous droits réservés</span>'; ?>  
+    echo '<span class="copyright">Tous droits réservés</span>'; ?>  
         <!-- <p class="copyright">Tous droits réservés</p>    -->
     </footer>
 

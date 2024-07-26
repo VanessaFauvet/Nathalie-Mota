@@ -14,8 +14,8 @@
     <?php get_template_part('template-parts/filtres'); ?>
 </section>
 
-<section class="catalogue_container">
-<?php echo do_shortcode('[my_ajax_button]'); ?>
+<section id="load-moreContainer ">
+    <?php echo do_shortcode('[my_ajax_button]'); ?>
 </section>
 
 <?php get_footer(); ?>

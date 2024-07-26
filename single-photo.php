@@ -128,7 +128,8 @@ $next_link = get_permalink($next_post);
             $query = new WP_Query($args);
             if ($query->have_posts()) :
                 while ($query->have_posts()) : $query->the_post();
-                    get_template_part('/template-parts/photo_block');
+                    include(get_template_directory() . '/template-parts/load.php');
+                    echo $photo_content;
                 endwhile;
             else :
                 echo '<p class="photoNotFound">Pas de photo similaire trouvée dans cette catégorie.</p>';
