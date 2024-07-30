@@ -9,21 +9,26 @@
 </head>
 
 <body <?php body_class(); ?>>
-    <header id="main-menu">
-        <a href="<?php echo home_url( '/' ); ?>">
-            <img class="logo" src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.png" alt="Logo">
-        </a>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="<?php echo home_url( '/' ); ?>">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.png" alt="Logo">
+                </a>
+            </div>
+        </nav>
+
+        <div class="burger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+            
+        <div class="main-nav">
             <?php wp_nav_menu(array(
                 'theme_location' => 'main',
                 'container' => 'ul', // afin d'éviter d'avoir une div autour
                 )); 
             ?>
-        
-        <!-- Menu mobile -->
-        <!-- <div class="hamburger-icon">
-            <img class="logo" src="<?php echo get_template_directory_uri(); ?>/assets/img/Burger_open.png" alt="Icone burger">
         </div>
-        <div class="cross-icon">
-            <img class="logo" src="<?php echo get_template_directory_uri(); ?>/assets/img/Burger_close.png" alt="Icone croix">
-        </div> -->
     </header>

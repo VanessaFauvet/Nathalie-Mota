@@ -1,6 +1,6 @@
 <div class="hero">
 
-    <h1 class="hero_title">Photographe event</h1>
+    <h1>Photographe event</h1>
     
     <?php
     // Récupération d'une photo aléatoire
