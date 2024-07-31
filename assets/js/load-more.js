@@ -20,12 +20,12 @@ jQuery(document).ready(function($) {
       });
 
 
-function ajax_photos(source = null) {
-const elements = document.querySelectorAll('[data-photo-id]');
-        const category = document.getElementById('categorie').value;
-        console.log(category);
-        const format = document.getElementById('format').value;
-        const year = document.getElementById('annee').value;
+    function ajax_photos(source = null) {
+    const elements = document.querySelectorAll('[data-photo-id]');
+    const category = document.getElementById('categorie').value;
+    console.log(category);
+    const format = document.getElementById('format').value;
+    const year = document.getElementById('annee').value;
 
 
     // Créer un tableau pour stocker les valeurs des attributs data-photo-id
@@ -67,5 +67,12 @@ const elements = document.querySelectorAll('[data-photo-id]');
                 console.log('Error:', error);
             }
         });
+
+    // Initialisation de select2 pour les éléments avec la classe "taxonomy-select"
+  $(document).ready(function () {
+    $(".taxonomy-select").select2({
+      dropdownPosition: "below",
+    });
+  });
 }
 });
