@@ -67,12 +67,5 @@ jQuery(document).ready(function($) {
                 console.log('Error:', error);
             }
         });
-
-    // Initialisation de select2 pour les éléments avec la classe "taxonomy-select"
-  $(document).ready(function () {
-    $(".taxonomy-select").select2({
-      dropdownPosition: "below",
-    });
-  });
 }
 });

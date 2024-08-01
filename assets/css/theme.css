@@ -330,21 +330,6 @@ h1 {
   }
 }
 
-.select2-container--default .select2-dropdown {
-  background-color: #E00000;
-  color: white;
-}
-
-.select2-container--default .select2-results__option {
-  background-color: #E00000;
-  color: white;
-}
-
-.select2-container--default .select2-results__option--highlighted {
-  background-color: #ff6666;
-  color: white;
-}
-
 /* Catalogue */
 #catalogueContainer {
   width: 80%;
