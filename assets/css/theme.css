@@ -465,7 +465,7 @@ h1 {
 }
 
 .photo_block:hover .photo_overlay h2,
-.photo_block:hover .photo_overlayh3,
+.photo_block:hover .photo_overlay h3,
 .photo_block:hover .eye,
 .photo_block:hover .fullscreen {
   display: block;
@@ -931,7 +931,7 @@ form label {
   }
 
   @media all and (min-width: 1441px) {
-    left: 670px;
+    left: 675px;
   }
 }
 
@@ -952,7 +952,7 @@ form label {
   }
 
   @media all and (min-width: 1441px) {
-    right: 670px;
+    right: 570px;
   }
 }
 
@@ -996,6 +996,7 @@ form label {
 
   @media all and (min-width: 1441px) {
     gap: 175px;
+    height: 80px;
   }
 }
 
