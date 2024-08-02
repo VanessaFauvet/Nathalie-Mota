@@ -12,6 +12,13 @@ function nathalie_mota_scripts() {
     wp_enqueue_script('lightbox', get_stylesheet_directory_uri() . '/assets/js/lightbox.js', array('jquery'), '1.0', time(), true);
     // Chargement du script du menu burger
     wp_enqueue_script('burger', get_stylesheet_directory_uri() . '/assets/js/burger.js', array('jquery'), '1.0', time(), true);
+
+    //Librairie Select2
+    wp_enqueue_script('select2-js', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js', array('jquery'), '4.0.13', true);
+    wp_enqueue_style('select2-css', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css', array());
+
+    // CHargement du script Select2
+    wp_enqueue_script('select', get_stylesheet_directory_uri() . '/assets/js/select-2.js', array('jquery'), '1.0', time(), true);
 }
 
 add_action('wp_enqueue_scripts', 'nathalie_mota_scripts');

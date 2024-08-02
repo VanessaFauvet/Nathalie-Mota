@@ -5,6 +5,8 @@ $taxonomy = [
     'format'    => 'FORMATS',
 ];
 
+echo "<div class='left-section'>";
+
 foreach ($taxonomy as $taxonomy_slug => $label) {
     $terms = get_terms($taxonomy_slug);
 
@@ -20,10 +22,14 @@ foreach ($taxonomy as $taxonomy_slug => $label) {
     }
 }
 
+echo "</div>";
+
+echo "<div class='right-section'>";
     echo "<select id='annee' class='custom-select taxonomy-select'>";
     echo "<option value=''>TRIER PAR</option>";
     echo "<option value='ASC'>Du plus ancien au plus récent</option>";
     echo "<option value='DESC'>Du plus récent au plus ancien</option>";
 
     echo "</select>";
+echo "</div>";
 ?>
